@@ -7,7 +7,7 @@
 	#'security/ir.model.access.csv',
 	#'security/security.xml',
 	#'wizard/wizard_view.xml',
-	'pdb_view.xml',
+	'pdv_view.xml',
     ],
     'demo': [
     ],
