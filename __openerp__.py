@@ -2,7 +2,7 @@
     'name': 'Blancoamor - PDV Customization',
     'category': 'POS',
     'version': '0.1',
-    'depends': ['base','product','sale','ba_sales'],
+    'depends': ['base','product','sale','ba_sales','point_of_sale'],
     'data': [
 	#'security/ir.model.access.csv',
 	#'security/security.xml',
