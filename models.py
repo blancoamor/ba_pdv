@@ -24,7 +24,8 @@ class sale_order(models.Model):
 	@api.one
 	def create_pdv_ticket(self):
 		# Checks if a session is open
-		session_id = self.env['pos.session'].search([('state','=','opened')])
+
+		session_id = self.env['pos.session'].search([('state','=','opened'),('config_id','=',self.user_id.config_id.id)])
 		if not session_id:
 			raise ValidationError('No hay sesion abierta')
 		vals_pos_order = {
