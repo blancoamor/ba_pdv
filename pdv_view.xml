@@ -23,8 +23,13 @@
             <field name="model">pos.order</field>
 	    <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
             <field name="arch" type="xml">
-		<field name="partner_id" position="after">
-			<field name="sale_order_id" />
+		<button name="%(sale.action_view_sale_advance_payment_inv)d" string="Create Invoice" position="attributes">
+			<attribute name="invisible">1</attribute>
+		<button>
+		<field name="company_id" position="after">
+			<group string="Tickets" >
+				<field name="sale_order_id" />
+			</group>
 		</field>
             </field>
         </record>
