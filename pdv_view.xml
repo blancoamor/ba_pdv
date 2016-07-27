@@ -25,7 +25,7 @@
             <field name="arch" type="xml">
 		<button name="%(sale.action_view_sale_advance_payment_inv)d" string="Create Invoice" position="attributes">
 			<attribute name="invisible">1</attribute>
-		<button>
+		</button>
 		<field name="company_id" position="after">
 			<group string="Tickets" >
 				<field name="sale_order_id" />
