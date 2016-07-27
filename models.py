@@ -27,7 +27,9 @@ class sale_order(models.Model):
 
 		if self.ticket_id:
 			raise ValidationError('Ya hay ticket creado para el pedido')
-		session_id = self.env['pos.session'].search([('state','=','opened'),('config_id','=',self.user_id.config_id.id)])
+		if not self.user_id.pos_config:
+			raise ValidationError('No existe sucursal definida para el usuario.\nPor favor contacte al administrador')
+		session_id = self.env['pos.session'].search([('state','=','opened'),('config_id','=',self.user_id.pos_config.id)])
 		if not session_id:
 			raise ValidationError('No hay sesion abierta')
 		vals_pos_order = {
