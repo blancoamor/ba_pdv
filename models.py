@@ -30,3 +30,15 @@ class sale_order(models.Model):
 			'pos_reference': self.client_order_ref,	
 			}
 		pos_order = self.env['pos.order'].create(vals_pos_order)	
+		for line in self.order_line:
+			vals_line = {
+				'order_id': pos_order.id,
+				'discount': line.discount,
+				'display_name': line.description,
+				'name': line.name,
+				'price_subtotal': line.price_subtotal,
+				'price_unit': line.price_unit,
+				'qty': line.product_uom_qty,
+				'product_id': line.product_id.id,
+				}
+			pos_order_line = self.env['pos.order.line'].create(vals_line)
