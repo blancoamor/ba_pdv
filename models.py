@@ -25,6 +25,8 @@ class sale_order(models.Model):
 	def create_pdv_ticket(self):
 		# Checks if a session is open
 
+		if self.ticket_id:
+			raise ValidationError('Ya hay ticket creado para el pedido')
 		session_id = self.env['pos.session'].search([('state','=','opened'),('config_id','=',self.user_id.config_id.id)])
 		if not session_id:
 			raise ValidationError('No hay sesion abierta')
