@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data noupdate="0">
+
+    <record id="ba_pdv.group_pdv_users" model="res.groups">
+        <field name="name">BA Usuarios PDV</field>
+        <field name="category_id" ref="base.module_category_point_of_sale"/>
+        <field name="implied_ids" eval="[(4, ref('point_of_sale.group_pos_user'))]"/>
+        <field name="comment">the user will have access to all records of everyone in the PDV.</field>
+    </record>
+
+</data>
+</openerp>
