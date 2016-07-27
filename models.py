@@ -12,6 +12,12 @@ from datetime import datetime
 #Get the logger
 _logger = logging.getLogger(__name__)
 
+class pos_order(models.Model):
+	_inherit = 'pos.order'
+
+	sale_order_id = fields.Many2one('sale.order')
+
+
 class sale_order(models.Model):
 	_inherit = 'sale.order'
 
@@ -28,13 +34,14 @@ class sale_order(models.Model):
 			'location_id': session_id.config_id.stock_location_id.id,
 			'user_id': self.user_id.id,
 			'pos_reference': self.client_order_ref,	
+			'sale_order_id': self.id,
 			}
 		pos_order = self.env['pos.order'].create(vals_pos_order)	
 		for line in self.order_line:
 			vals_line = {
 				'order_id': pos_order.id,
 				'discount': line.discount,
-				'display_name': line.description,
+				'display_name': line.name,
 				'name': line.name,
 				'price_subtotal': line.price_subtotal,
 				'price_unit': line.price_unit,
@@ -42,3 +49,6 @@ class sale_order(models.Model):
 				'product_id': line.product_id.id,
 				}
 			pos_order_line = self.env['pos.order.line'].create(vals_line)
+
+
+	ticket_id = fields.One2many(comodel_name='pos.order',inverse_name='sale_order_id')
