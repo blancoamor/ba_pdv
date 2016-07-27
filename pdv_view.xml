@@ -12,6 +12,9 @@
 				states="progress,manual"
 				class="oe highlight" />
 		</button>
+		<field name="pricelist_id" position="after">
+			<field name="ticket_id" />
+		</field>
             </field>
         </record>
 
