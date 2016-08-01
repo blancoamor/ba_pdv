@@ -12,6 +12,12 @@ from datetime import datetime
 #Get the logger
 _logger = logging.getLogger(__name__)
 
+class account_journal(models.Model):
+	_inherit = 'account.journal'
+
+	sale_cuotas_id = fields.Many2one('sale.cuotas')
+
+
 class pos_order(models.Model):
 	_inherit = 'pos.order'
 
