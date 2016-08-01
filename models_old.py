@@ -12,12 +12,19 @@ import openerp.addons.decimal_precision as dp
 import openerp.addons.product.product
 
 
-class pos_order(osv.osv):
-	_inherit = 'pos.order'
+class pos_make_payment(osv.osv_memory):
+	_inherit = 'pos.make.payment'
 
-	def add_payment(self, cr, uid, order_id, data, context=None):
+	def check(self, cr, uid, ids, context=None):
+		context = context or {}
+	        order_obj = self.pool.get('pos.order')
+        	active_id = context and context.get('active_id', False)
+
+	        order = order_obj.browse(cr, uid, active_id, context=context)
+	        amount = order.amount_total - order.amount_paid
+        	data = self.read(cr, uid, ids, context=context)[0]
+
 		if data['journal_id']:
-			order = self.pool.get('pos.order').browse(cr,uid,context['active_id'])
 			journal = self.pool.get('account.journal').browse(cr,uid,data['journal_id'][0])
 			if journal.sale_cuotas_id:
 				vals_line = {
@@ -29,4 +36,4 @@ class pos_order(osv.osv):
 					'price_subtotal': journal.sale_cuotas_id.monto,
 					}
 				line_id = self.pool.get('pos.order.line').create(cr,uid,vals_line)
-		return super(pos_order,self).add_payment(cr,uid,order_id,data,context)
+		return super(pos_make_payment,self).check(cr,uid,ids,context)
