@@ -54,6 +54,8 @@ class sale_order(models.Model):
 				'product_id': line.product_id.id,
 				}
 			pos_order_line = self.env['pos.order.line'].create(vals_line)
+		for picking in self.picking_ids:
+			picking.action_cancel()
 
 
 	ticket_id = fields.One2many(comodel_name='pos.order',inverse_name='sale_order_id')
