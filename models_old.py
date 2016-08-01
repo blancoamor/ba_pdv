@@ -36,4 +36,6 @@ class pos_make_payment(osv.osv_memory):
 					'price_subtotal': journal.sale_cuotas_id.monto,
 					}
 				line_id = self.pool.get('pos.order.line').create(cr,uid,vals_line)
-		return super(pos_make_payment,self).check(cr,uid,ids,context)
+		res = super(pos_make_payment,self).check(cr,uid,ids,context)
+		return {'type': 'ir.actions.act_window_close'}
+
