@@ -25,6 +25,23 @@
             </field>
         </record>
 
+        <record id="view_sale_stock_order_form_pdv" model="ir.ui.view">
+            <field name="name">sale.stock.order.form.pdv</field>
+            <field name="model">sale.order</field>
+	    <field name="inherit_id" ref="sale_stock.view_order_form_inherit"/>
+            <field name="arch" type="xml">
+		 <button name="ship_recreate" position="attributes">
+			<attribute name="invisible">1</attribute>
+		 </button>
+                 <button name="ship_corrected" position="attributes">
+			<attribute name="invisible">1</attribute>
+		 </button>
+		 <button name="action_view_delivery" position="attributes">
+			<attribute name="invisible">1</attribute>
+		 </button>
+            </field>
+        </record>
+
         <record id="view_pos_order_form" model="ir.ui.view">
             <field name="name">pos.order.form.pdv</field>
             <field name="model">pos.order</field>
