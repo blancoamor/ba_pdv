@@ -15,6 +15,9 @@ _logger = logging.getLogger(__name__)
 class pos_make_payment(models.TransientModel):
 	_inherit = 'pos.make.payment'
 
+	order_amount = fields.Float('Monto del pedido')
+	cuotas = fields.Integer('Cuotas')
+	monto_recargo = fields.Float('Monto Recargo')
 	total_amount = fields.Float('Monto total con recargos')
 	journal_id = fields.Many2one('account.journal',string='Payment Mode',required=True,domain=[('journal_user','=',True)])
 
@@ -22,7 +25,17 @@ class pos_make_payment(models.TransientModel):
 	def change_journal_id(self):
 		if self.journal_id.sale_cuotas_id:
 			if self.journal_id.sale_cuotas_id.monto:
+				self.cuotas = self.journal_id.sale_cuotas_id.cuotas
+				self.monto_recargo = self.journal_id.sale_cuotas_id.monto
 				self.total_amount = self.amount + self.journal_id.sale_cuotas_id.monto
+			else:
+				self.cuotas = 0
+				self.monto_recargo = 0
+				self.total_amount = self.amount
+		else:
+			self.cuotas = 0
+			self.monto_recargo = 0
+			self.total_amount = self.amount
 
 
 class account_journal(models.Model):
