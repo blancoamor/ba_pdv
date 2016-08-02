@@ -16,6 +16,7 @@ class pos_make_payment(models.TransientModel):
 	_inherit = 'pos.make.payment'
 
 	total_amount = fields.Float('Monto total con recargos')
+	journal_id = fields.Many2one('account.journal',string='Payment Mode',required=True,domain=[('journal_user','=',True)])
 
 	@api.onchange('journal_id')
 	def change_journal_id(self):
