@@ -7,7 +7,7 @@
             <field name="model">pos.make.payment</field>
 	    <field name="inherit_id" ref="point_of_sale.view_pos_payment"/>
             <field name="arch" type="xml">
-		<field name="amount">
+		<field name="amount" position="after">
 			<field name="total_amount" />
 		</field>			
 	    </field>
