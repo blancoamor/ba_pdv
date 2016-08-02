@@ -12,6 +12,18 @@ from datetime import datetime
 #Get the logger
 _logger = logging.getLogger(__name__)
 
+class pos_make_payment(models.TransientModel):
+	_inherit = 'pos.make.payment'
+
+	total_amount = fields.Float('Monto total con recargos')
+
+	@api.onchange('journal_id')
+	def change_journal_id(self):
+		if self.journal_id.sale_cuotas_id:
+			if self.journal_id.sale_cuotas_id.monto:
+				self.total_amount = self.amount + self.journal_id.sale_cuotas_id.monto
+
+
 class account_journal(models.Model):
 	_inherit = 'account.journal'
 

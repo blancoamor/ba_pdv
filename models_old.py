@@ -15,6 +15,10 @@ import openerp.addons.product.product
 class pos_make_payment(osv.osv_memory):
 	_inherit = 'pos.make.payment'
 
+	_columns = {
+		'total_amount': fields.float('Monto total con recargos')
+		}
+
 	def check(self, cr, uid, ids, context=None):
 		context = context or {}
 	        order_obj = self.pool.get('pos.order')
