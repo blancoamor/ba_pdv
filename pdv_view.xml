@@ -83,6 +83,10 @@
             <field name="arch" type="xml">
                 <form string="PDV - Deposito Bancario">
 			<header>
+				<button name="process_pos_deposit" string="Procesar" type="object" 
+					attrs="{'readonly':[('state','not in',('draft'))]}" />
+				<button name="finish_pos_deposit" string="Finalizar" type="object" 
+					attrs="{'readonly':[('state','not in',('process'))]}" />
 				<field name="state" widget="statusbar" />
 			</header>
 			<group>
