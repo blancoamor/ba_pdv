@@ -97,9 +97,19 @@ class pos_deposit(models.Model):
 	_name = 'pos.deposit'
 	_description = 'Deposito de efectivo en banco'
 
+	@api.multi
+	def process_pos_deposit(self):
+		self.write({'state': 'process'})
+		return None
+
+	@api.multi
+	def finish_pos_deposit(self):
+		self.write({'state': 'deposited'})
+		return None
+
 	name = fields.Char('Nombre del deposito',required=True)
 	user_id = fields.Many2one('res.users',string='Empleado que realiza operacion',required=True)
 	date = fields.Date('Fecha',required=True)
 	monto = fields.Float('Monto',required=True)
         state = fields.Selection(selection=[('draft','Borrador'),('process','En Proceso'),('deposited','Depositado')],string='Status',default='draft')
-
+	nro_deposito = fields.Char(string='Nro Deposito')
