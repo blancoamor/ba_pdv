@@ -86,10 +86,11 @@
 				<field name="state" widget="statusbar" />
 			</header>
 			<group>
-				<field name="name" />
-				<field name="user_id" />
-				<field name="date" />
-				<field name="monto" />
+				<field name="name" attrs="{'readonly':[('state','not in',('draft'))]}"/>
+				<field name="user_id" attrs="{'readonly':[('state','not in',('draft'))]}"/>
+				<field name="date" attrs="{'readonly':[('state','not in',('draft'))]}"/>
+				<field name="monto" attrs="{'readonly':[('state','not in',('draft'))]}"/>
+				<field name="nro_deposito" attrs="{'readonly':[('state','not in',('process'))]}"/>
 			</group>		
 		</form>
 	    </field>
@@ -104,6 +105,7 @@
 			<field name="user_id" />
 			<field name="date" />
 			<field name="monto" />
+			<field name="nro_deposito" />
 			<field name="state" />
 		</tree>
 	    </field>
