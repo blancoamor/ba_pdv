@@ -77,5 +77,19 @@
             </field>
         </record>
 
+        <record id="action_ba_pdv_deposit" model="ir.actions.act_window">
+            <field name="name">PDV - Deposito Bancario</field>
+            <field name="res_model">pos.deposit</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_ba_pdv_deposit" name="PDV - Deposito Bancario" 
+            parent="point_of_sale.menu_point_config_product" 
+            action="action_ba_pdv_deposit"
+            sequence="150"/>
+
+
+
     </data>
 </openerp>
