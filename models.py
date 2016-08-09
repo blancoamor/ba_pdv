@@ -91,3 +91,12 @@ class sale_order(models.Model):
 
 
 	ticket_id = fields.One2many(comodel_name='pos.order',inverse_name='sale_order_id')
+
+
+class pos_deposit(models.Model):
+	_name = 'pos.deposit'
+	_description = 'Deposito de efectivo en banco'
+
+	name = fields.Char('Nombre del deposito')
+	date = fields.Date('Fecha')
+	monto = fields.Float('Monto')
