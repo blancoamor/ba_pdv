@@ -77,6 +77,24 @@
             </field>
         </record>
 
+        <record id="pos_deposit_form_view" model="ir.ui.view">
+            <field name="name">pos.deposit.form.view</field>
+            <field name="model">pos.deposit</field>
+            <field name="arch" type="xml">
+		<header>
+			<field name="state" widget="statusbar" />
+		</header>
+                <form string="PDV - Deposito Bancario">
+			<group>
+				<field name="name" />
+				<field name="user_id" />
+				<field name="date" />
+				<field name="monto" />
+			</group>		
+		</form>
+	    </field>
+	</record>
+
         <record id="action_ba_pdv_deposit" model="ir.actions.act_window">
             <field name="name">PDV - Deposito Bancario</field>
             <field name="res_model">pos.deposit</field>
