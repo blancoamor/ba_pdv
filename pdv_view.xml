@@ -81,10 +81,10 @@
             <field name="name">pos.deposit.form.view</field>
             <field name="model">pos.deposit</field>
             <field name="arch" type="xml">
-		<header>
-			<field name="state" widget="statusbar" />
-		</header>
                 <form string="PDV - Deposito Bancario">
+			<header>
+				<field name="state" widget="statusbar" />
+			</header>
 			<group>
 				<field name="name" />
 				<field name="user_id" />
@@ -92,6 +92,20 @@
 				<field name="monto" />
 			</group>		
 		</form>
+	    </field>
+	</record>
+
+        <record id="pos_deposit_tree_view" model="ir.ui.view">
+            <field name="name">pos.deposit.tree.view</field>
+            <field name="model">pos.deposit</field>
+            <field name="arch" type="xml">
+                <tree string="PDV - Deposito Bancario">
+			<field name="name" />
+			<field name="user_id" />
+			<field name="date" />
+			<field name="monto" />
+			<field name="state" />
+		</tree>
 	    </field>
 	</record>
 
