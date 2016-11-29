@@ -26,8 +26,8 @@ class pos_make_payment(models.TransientModel):
 		if self.journal_id.sale_cuotas_id:
 			if self.journal_id.sale_cuotas_id.monto:
 				self.cuotas = self.journal_id.sale_cuotas_id.cuotas
-				self.monto_recargo = self.journal_id.sale_cuotas_id.monto
-				self.total_amount = self.amount + self.journal_id.sale_cuotas_id.monto
+				self.monto_recargo = self.amount * self.journal_id.sale_cuotas_id.monto
+				self.total_amount = self.amount + (self.amount * self.journal_id.sale_cuotas_id.monto)
 			else:
 				self.cuotas = 0
 				self.monto_recargo = 0
